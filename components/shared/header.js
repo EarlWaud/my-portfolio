@@ -12,16 +12,15 @@ import {
 import Link from 'next/link';
 
 const BsNavLink = (props) => {
-  const {title, hrefroute} = props
+  const {title, href} = props
   return (
     <NavItem className="port-navbar-item">
-      <Link href={hrefroute}>
-        <a className="nav-link port-navbar-link">
+      <Link href={href}>
+        <a className="nav-link port-navbar-link clickable">
         {title}
         </a>
       </Link>
     </NavItem>
-
   )
 }
 
@@ -31,12 +30,14 @@ const BsNavBrand = () =>
   </Link>
 
 const LoginLink = () => 
-  <span className="nav-link port-navbar-link">Login</span>
+  <a className="nav-link port-navbar-link clickable" href="/api/v1/login">Login</a>
+  // <BsNavLink title="Login" href="/api/v1/login" />
 
 const LogoutLink = () => 
-  <span className="nav-link port-navbar-link">Logout</span>
+  <a className="nav-link port-navbar-link clickable" href="/api/v1/logout">Logout</a>
+  // <BsNavLink title="Logout" href="/api/v1/logout" />
 
-const Header  = () => {
+const Header  = ({user, loading}) => {
 
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
@@ -51,19 +52,24 @@ const Header  = () => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
-              <BsNavLink title="Home" hrefroute="/"/>
-              <BsNavLink title="Portfolios" hrefroute="/portfolios"/>
-              <BsNavLink title="Blogs" hrefroute="/blogs"/>
-              <BsNavLink title="Resume" hrefroute="/cv"/>
-              <BsNavLink title="About" hrefroute="/about"/>
+              <BsNavLink title="Home" href="/"/>
+              <BsNavLink title="Portfolios" href="/portfolios"/>
+              <BsNavLink title="Blogs" href="/blogs"/>
+              <BsNavLink title="Resume" href="/cv"/>
+              <BsNavLink title="About" href="/about"/>
+              <BsNavLink title="Secret" href="/secret"/>
           </Nav>
           <Nav>
-            <NavItem className="nav-link port-navbar-link clickable">
-              <LoginLink />
-            </NavItem>
-            <NavItem className="nav-link port-navbar-link clickable">
-              <LogoutLink />
-            </NavItem>
+            { !loading && 
+            <>
+              { user && 
+                <LogoutLink />
+              }
+              { !user && 
+                <LoginLink />          
+              }
+            </>
+            }
           </Nav>
         </Collapse>
       </Navbar>

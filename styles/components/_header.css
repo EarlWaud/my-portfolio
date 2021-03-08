@@ -12,6 +12,7 @@
   font-weight: bold;
 }
 .port-navbar.port-default .port-navbar-item {
+  /* border: 1px solid red; */
   margin-left: 10px;
   margin-right: 10px;
 }

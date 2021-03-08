@@ -5,13 +5,15 @@ import BasePage from '@/components/basepage';
 import { useGetPostById } from '@/actions';
 import { useRouter } from 'next/router'
 import React from 'react';
+import { useGetUser } from '@/actions/user';
 
 const Portfolio = () => {
   const router = useRouter();
   const { data: portfolio, error, loading } = useGetPostById(router.query.id);
+  const { data: dataU, loading: loadingU } = useGetUser();
   
   return (
-    <BaseLayout>
+    <BaseLayout user={dataU} loading={loadingU}>
       <BasePage>
       { loading && 
         <div className="alert">
