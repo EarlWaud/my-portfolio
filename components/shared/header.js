@@ -57,7 +57,21 @@ const Header  = ({user, loading}) => {
               <BsNavLink title="Blogs" href="/blogs"/>
               <BsNavLink title="Resume" href="/cv"/>
               <BsNavLink title="About" href="/about"/>
-              <BsNavLink title="Secret" href="/secret"/>
+              <> { user && <BsNavLink title="Secret" href="/secret"/> } </>
+              <> { user && <BsNavLink title="SecretSSR" href="/secretssr"/> } </>
+              <> { user && <BsNavLink title="Admin" href="/onlyadmin"/> } </>
+              <> { user && <BsNavLink title="AdminSSR" href="/onlyadminssr"/> } </>
+          </Nav>
+          <Nav>
+          { !loading && 
+            <>
+              { user && 
+                // <span className="port-navbar port-default" >{user.name}</span>
+                <BsNavLink title={user.name} href="/api/v1/me"/>
+
+              }
+            </>
+            }
           </Nav>
           <Nav>
             { !loading && 

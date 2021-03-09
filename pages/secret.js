@@ -1,19 +1,22 @@
 
-import BaseLayout from '@/components/layouts/baselayout'
+
+import BaseLayout from '@/components/layouts/baselayout';
 import BasePage from '@/components/basepage';
 import withAuth from '@/hoc/withauth';
 
 const Secret = ({user, loading}) => {
-
-    return (
-      <BaseLayout user={user} loading={loading}>
-        <BasePage>
-          <h1>This is the Secret page</h1>
-          <h2>Hello {user.name}</h2>
-        </BasePage>
-      </BaseLayout>
-    )
+  debugger
+  return (
+    <BaseLayout user={user} loading={loading}>
+      <BasePage>
+      <h1>I am Secret Page - Hello {user.name}</h1>
+      </BasePage>
+    </BaseLayout>
+  )
 }
+
+export default withAuth(Secret)();
+
 
 // High Order Component - HOC
 // Simple function that take a compoent and 
@@ -44,4 +47,4 @@ const Secret = ({user, loading}) => {
 
 // now we moved it to the hoc/withAuth.js
 
-export default withAuth(Secret)
+//export default withAuth(Secret)
