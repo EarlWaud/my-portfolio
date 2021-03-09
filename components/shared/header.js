@@ -71,10 +71,10 @@ const Header  = ({user, loading}) => {
           <Nav>
           { !loading && 
             <>
-              { user && 
-                // <span className="port-navbar port-default" >{user.name}</span>
-                <BsNavLink title={user.name} href="/api/v1/me"/>
-
+              { user && <>
+                <img src={user.picture} className="profile-picture" />
+                <BsNavLink title={user.nickname} href="/user"/>
+                </>
               }
             </>
             }

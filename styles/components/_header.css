@@ -29,3 +29,8 @@
 .port-navbar.port-default .port-navbar-link:hover, .port-navbar.port-default .port-navbar-link:focus {
   color: #dba919;
 }
+
+.profile-picture {
+  width: 40px;
+  height: 40px;
+}
