@@ -9,6 +9,6 @@ module.exports = {
     return config;
   },
   env: {
-    AUTH0_NAMESPACE: process.env.AUTH0_NAMESPACE
+    AUTH0_NAMESPACE: process.env.AUTH0_NAMESPACE,
   }
 }

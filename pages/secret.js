@@ -5,7 +5,6 @@ import BasePage from '@/components/basepage';
 import withAuth from '@/hoc/withauth';
 
 const Secret = ({user, loading}) => {
-  debugger
   return (
     <BaseLayout user={user} loading={loading}>
       <BasePage>

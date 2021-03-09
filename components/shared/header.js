@@ -1,7 +1,7 @@
 
 
 
-import React, { useState } from 'react';
+import React, { useDebugValue, useState } from 'react';
 import {
   Collapse,
   Navbar,
@@ -10,6 +10,8 @@ import {
   NavItem,
 } from 'reactstrap';
 import Link from 'next/link';
+
+import { isAuthorized } from '@/utils/auth0'
 
 const BsNavLink = (props) => {
   const {title, href} = props
@@ -42,6 +44,10 @@ const Header  = ({user, loading}) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
+  const isAdmin = isAuthorized(user, "admin");
+
+  console.log("isAdmin:", isAdmin)
+
     return (
       <Navbar 
         className="port-navbar port-default absolute" 
@@ -59,8 +65,8 @@ const Header  = ({user, loading}) => {
               <BsNavLink title="About" href="/about"/>
               <> { user && <BsNavLink title="Secret" href="/secret"/> } </>
               <> { user && <BsNavLink title="SecretSSR" href="/secretssr"/> } </>
-              <> { user && <BsNavLink title="Admin" href="/onlyadmin"/> } </>
-              <> { user && <BsNavLink title="AdminSSR" href="/onlyadminssr"/> } </>
+              <> { user && isAdmin && <BsNavLink title="Admin" href="/onlyadmin"/> } </>
+              <> { user && isAdmin && <BsNavLink title="AdminSSR" href="/onlyadminssr"/> } </>
           </Nav>
           <Nav>
           { !loading && 
